@@ -3,4 +3,11 @@
     margin-left: 60px;
 }
 
-.d-flex 
+.card {
+    width : 18rem; 
+}
+
+.card > .card-img-top {
+    width: 286px;
+    height: 200px;
+}

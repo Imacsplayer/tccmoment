@@ -2,103 +2,42 @@
 	require "config.php"; 
 	include DBAPI; 
 	include(HEADER_TEMPLATE);
+	include "functions.php";
+	index();
 	
 	$db = open_database();
+	
 ?>
+	
 
-		<!-- <h1>Menu Principal</h1>
+		<br/>
+		<h1>Contrate profissionais ou busque empresas!</h1>
 		<hr>
 
 		<?php if ($db) : ?>
-
-		<div class="row">
-			<div class="col-xl-2 col-sm-3 col-md-2">
-				<a href="revistas/add.php" class="btn btn-secondary">
-					<div class="row">
-						<div class="col-xl-12 text-center">
-							<i class="fa-5x fa-solid fa-plus"></i>
-						</div>
-						<div class="col-xl-12 text-center">
-							<p>Nova Revista</p>
-						</div>
-					</div>
-				</a>
+			<div class="row row-cols-1 row-cols-md-4 g-4">
+				<?php if ($servicos) : ?>
+					<?php foreach ($servicos as $servico) : ?>
+						<div class="col">
+								<div class="card h-100">
+								<img src="./imagens/<?php echo $servico['img']; ?>" class="card-img-top" alt="..." 
+								style = "width: 304px; height: 200px;" >
+								<div class="card-body">
+									<h5 class="card-title"><?php echo $servico['titulo']; ?></h5>
+									<p class="card-text"><?php echo $servico['descricao']; ?></p>
+									<a href="#" class="btn btn-primary">Visitar página</a>
+								</div>
+								</div>
+						</div>		
+					<?php endforeach; ?>
+				<?php endif; ?>
 			</div>
-
-			<div class="col-xl-3 col-sm-3 col-md-2">
-				<a href="revistas" class="btn btn-light">
-					<div class="row">
-						<div class="col-xl-12 text-center">
-						 	<i class="fa-5x fa-solid fa-book-open"></i>
-						</div>
-						<div class="col-xl-12 text-center">
-							<p>Revistas</p>
-						</div>
-					</div>
-				</a>
-			</div>
-		</div>
-	<p>
-		<div class="row">
-			<div class="col-xl-2 col-sm-3 col-md-2">
-				<a href="customers/add.php" class="btn btn-secondary">
-					<div class="row">
-						<div class="col-xl-12 text-center">
-							<i class="fa-5x fa-solid fa-user-plus"></i>
-						</div>
-						<div class="col-xl-12 text-center">
-							<p>Novo Cliente</p>
-						</div>
-					</div>
-				</a>
-			</div>
-
-			<div class="col-xl-3 col-sm-3 col-md-2">
-				<a href="customers" class="btn btn-light">
-					<div class="row">
-						<div class="col-xl-12 text-center">
-							<i class="fa-5x fa-solid fa-users"></i>
-						</div>
-						<div class="col-xl-12 text-center">
-							<p>Clientes</p>
-						</div>
-					</div>
-				</a>
-			</div>
-		</div>
-	<p>
-	<div class="row">
-			<div class="col-xl-2 col-sm-3 col-md-2">
-				<a href="usuarios/add.php" class="btn btn-secondary">
-					<div class="row">
-						<div class="col-xl-12 text-center">
-							<i class="fa-5x fa-solid fa-user-plus"></i>
-						</div>
-						<div class="col-xl-12 text-center">
-							<p>Novo Usuário</p>
-						</div>
-					</div>
-				</a>
-			</div>
-
-			<div class="col-xl-3 col-sm-3 col-md-2">
-				<a href="usuarios" class="btn btn-light">
-					<div class="row">
-						<div class="col-xl-12 text-center">
-							<i class="fa-5x fa-solid fa-users"></i>
-						</div>
-						<div class="col-xl-12 text-center">
-							<p>Usuário</p>
-						</div>
-					</div>
-				</a>
-			</div>
-		</div>
-
 		<?php else : ?>
 			<div class="alert alert-danger" role="alert">
 				<p><strong>ERRO:</strong> Não foi possível Conectar ao Banco de Dados!</p>
 			</div>
 
-		<?php endif; ?> -->
+		<?php endif; ?>
+	
+		
 		<?php include(FOOTER_TEMPLATE); ?>
